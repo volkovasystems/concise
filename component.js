@@ -1,4 +1,4 @@
-define( "component", 
+define( "Component", 
 	[ 
 		"angular", 
 		"jquery",
@@ -56,4 +56,15 @@ define( "component",
 		};
 
 		return Component;
+	} );
+
+define( "extendComponent", 
+	[ "Component" ],
+	function( Component ){
+		return function extendComponent( component ){
+			var currentConstructor = component.constructor;
+			component.constructor = 
+			component.prototype = Object.create( Component.prototype );
+			component.prototype.constructor = component;
+		};
 	} );

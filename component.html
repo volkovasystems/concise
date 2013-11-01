@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js" 
+			data-main="./config.js"></script>
+		<script>
+			require( [ "component" ],
+				function( ){
+					require( [ "Component" ],
+						function( Component ){
+							console.debug( Component );
+							console.debug( new Component( ) );
+					} );
+			} );
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
