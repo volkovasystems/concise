@@ -1,3 +1,5 @@
+
+
 define( "Component", 
 	[ 
 		"angular", 
@@ -54,17 +56,26 @@ define( "Component",
 				this.module.provider( providerName, this.provider );
 			}
 		};
+		
+		Component.prototype.deploy = function deploy( ){
+				
+		};
 
 		return Component;
 	} );
 
 define( "extendComponent", 
-	[ "Component" ],
+	[ 
+		"Component" 
+	],
 	function( Component ){
+		var apply = function apply( method, self, parameters ){
+			if( typeof method != "function" ){
+				throw new Error( "invalid method type" );
+			}
+			method.apply( self, parameters );
+		};
 		return function extendComponent( component ){
-			var currentConstructor = component.constructor;
-			component.constructor = 
-			component.prototype = Object.create( Component.prototype );
-			component.prototype.constructor = component;
+			//TODO: Implements inheritance here.
 		};
 	} );
