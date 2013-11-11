@@ -34,9 +34,12 @@ define( "Component",
 		};
 
 		Component.prototype.build = function build( ){
+
 			if( "directive" in this ){
 				var directiveName = S( this.name ).camelize( ).toString( );
 				this.module.directive( directiveName, this.directive );
+			}else{
+				throw new Error( "missing directive" );
 			}
 
 			if( "controller" in this ){
@@ -47,10 +50,14 @@ define( "Component",
 			if( "service" in this ){
 				var serviceName = S( this.name ).camelize( ).toString( );
 				this.module.service( serviceName, this.service );
-			}else if( "factory" in this ){
+			}
+
+			if( "factory" in this ){
 				var factoryName = S( this.name ).camelize( ).toString( );
 				this.module.factory( serviceName, this.factory );
-			}else if( "provider" in this ){
+			}
+
+			if( "provider" in this ){
 				var providerName = S( this.name ).camelize( ).toString( );
 				this.module.provider( providerName, this.provider );
 			}
