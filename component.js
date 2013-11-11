@@ -1,13 +1,12 @@
-
-
 define( "Component", 
 	[ 
 		"angular", 
 		"jquery",
 		"underscore",
-		"string"
+		"string",
+		"extend"
 	],
-	function(  ){
+	function( extend ){
 		function Component( name, id ){
 			this.id = id;
 			this.name = name;
@@ -56,26 +55,18 @@ define( "Component",
 				this.module.provider( providerName, this.provider );
 			}
 		};
-		
-		Component.prototype.deploy = function deploy( ){
-				
-		};
 
-		return Component;
+		return extend( Component );
 	} );
 
 define( "extendComponent", 
 	[ 
-		"Component" 
+		"Component"
 	],
 	function( Component ){
-		var apply = function apply( method, self, parameters ){
-			if( typeof method != "function" ){
-				throw new Error( "invalid method type" );
-			}
-			method.apply( self, parameters );
+		var extendComponent = function extendComponent( component ){
+			return Component.extend( component );
 		};
-		return function extendComponent( component ){
-			//TODO: Implements inheritance here.
-		};
+
+		return extendComponent; 
 	} );
